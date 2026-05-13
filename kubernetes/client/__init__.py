@@ -11,7 +11,6 @@
 """
 
 
-from __future__ import absolute_import
 
 # import models into sdk package
 from .models.admissionregistration_v1beta1_service_reference import AdmissionregistrationV1beta1ServiceReference

@@ -12,7 +12,6 @@
 
 
 from pprint import pformat
-from six import iteritems
 import re
 
 
@@ -141,8 +140,8 @@ class V1beta1CertificateSigningRequestSpec(object):
         """
         if request is None:
             raise ValueError("Invalid value for `request`, must not be `None`")
-        if request is not None and not re.search('^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$', request):
-            raise ValueError("Invalid value for `request`, must be a follow pattern or equal to `/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/`")
+        if request is not None and not re.search(r'^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$', request):
+            raise ValueError("Invalid value for `request`, must be a follow pattern or equal to `/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/`")
 
         self._request = request
 
@@ -221,7 +220,7 @@ class V1beta1CertificateSigningRequestSpec(object):
         """
         result = {}
 
-        for attr, _ in iteritems(self.swagger_types):
+        for attr, _ in self.swagger_types.items():
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(
