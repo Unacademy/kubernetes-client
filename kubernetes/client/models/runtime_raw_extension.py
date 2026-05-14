@@ -12,7 +12,6 @@
 
 
 from pprint import pformat
-from six import iteritems
 import re
 
 
@@ -70,8 +69,8 @@ class RuntimeRawExtension(object):
         """
         if raw is None:
             raise ValueError("Invalid value for `raw`, must not be `None`")
-        if raw is not None and not re.search('^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$', raw):
-            raise ValueError("Invalid value for `raw`, must be a follow pattern or equal to `/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/`")
+        if raw is not None and not re.search(r'^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$', raw):
+            raise ValueError("Invalid value for `raw`, must be a follow pattern or equal to `/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/`")
 
         self._raw = raw
 
@@ -81,7 +80,7 @@ class RuntimeRawExtension(object):
         """
         result = {}
 
-        for attr, _ in iteritems(self.swagger_types):
+        for attr, _ in self.swagger_types.items():
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(

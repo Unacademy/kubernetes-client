@@ -12,7 +12,6 @@
 
 
 from pprint import pformat
-from six import iteritems
 import re
 
 
@@ -74,8 +73,8 @@ class V1beta1CertificateSigningRequestStatus(object):
         :param certificate: The certificate of this V1beta1CertificateSigningRequestStatus.
         :type: str
         """
-        if certificate is not None and not re.search('^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$', certificate):
-            raise ValueError("Invalid value for `certificate`, must be a follow pattern or equal to `/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/`")
+        if certificate is not None and not re.search(r'^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$', certificate):
+            raise ValueError("Invalid value for `certificate`, must be a follow pattern or equal to `/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/`")
 
         self._certificate = certificate
 
@@ -108,7 +107,7 @@ class V1beta1CertificateSigningRequestStatus(object):
         """
         result = {}
 
-        for attr, _ in iteritems(self.swagger_types):
+        for attr, _ in self.swagger_types.items():
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(

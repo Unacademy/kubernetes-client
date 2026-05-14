@@ -12,7 +12,6 @@
 
 
 from pprint import pformat
-from six import iteritems
 import re
 
 
@@ -78,7 +77,7 @@ class V1NamespaceStatus(object):
         """
         result = {}
 
-        for attr, _ in iteritems(self.swagger_types):
+        for attr, _ in self.swagger_types.items():
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(
